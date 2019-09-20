@@ -2,13 +2,15 @@ import React, {useState, useEffect} from 'react';
 import {
   Divider,
 } from 'semantic-ui-react';
-import Layout from '../components/Layout';
 import TimeNavBar from '../components/TimeNavBar';
 import SubmitPost from '../components/SubmitPost';
 import ActivityList from '../components/ActivityList';
+import useJournalServicesApi from '../hooks/JournalServicesApi';
+import {ApiActions} from '../enums';
 
 const Index = () => {
   const [activities, setActivities] = useState([]);
+  const { responseData, isLoading, errorMsg, doApiAction } = useJournalServicesApi();
 
   useEffect(() => {
     setActivities(['I had a meeting with John Stamos from Google last week in their headquarters.',
@@ -18,17 +20,33 @@ const Index = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // handle api repsonse
+  useEffect(() => {
+    if (responseData.isError) {
+        return;
+    }
+
+    switch (responseData.action) {
+        case ApiActions.POST_PARSETIME:
+            console.log(responseData.payload);
+            break;
+        default:
+    }
+// eslint-disable-next-line react-hooks/exhaustive-deps
+}, [responseData]);
+
   const onSubmitPost = (content) => {
+    doApiAction(ApiActions.POST_PARSETIME, {'message': content})
     setActivities([content, ...activities]);
   }
 
   return (
-    <Layout>
+    <> 
       <TimeNavBar></TimeNavBar>
       <SubmitPost onSubmitPost={onSubmitPost}></SubmitPost>
       <Divider horizontal><i className='leaf icon' /></Divider>
       <ActivityList items={activities}></ActivityList>
-    </Layout>
+    </>
 )}
 
 export default Index;

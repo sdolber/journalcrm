@@ -11,7 +11,8 @@ import {
   List,
   Menu,
   Segment,
-  Icon
+  Icon,
+  Button
 } from 'semantic-ui-react';
 import '../pages/styles.css'
 
@@ -50,7 +51,7 @@ const Layout = ({children}) => {
     </Menu>
 
     <Container text style={{ marginTop: '7em' }}>
-      {children}
+       {children}
     </Container>
 
     <Segment inverted vertical style={{ margin: '5em 0em 0em', padding: '5em 0em' }}>
@@ -115,4 +116,4 @@ const Layout = ({children}) => {
   </div>
 )}
 
-export default Layout;
+export default Layout

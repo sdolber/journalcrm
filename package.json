@@ -7,12 +7,14 @@
     "start": "next start"
   },
   "dependencies": {
+    "firebase": "^6.6.1",
     "moment": "^2.24.0",
     "next": "latest",
     "prop-types": "^15.7.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-moment": "^0.9.2",
+    "react-with-firebase-auth": "^1.0.4",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.84.0"
   },

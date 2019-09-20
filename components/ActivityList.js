@@ -17,7 +17,7 @@ const ActivityList = ({items}) => {
           verticalAlign='middle'
         >
           {items.map((item) => (
-            <ActivityPost>
+            <ActivityPost key={Math.random()}>
                 {item}
             </ActivityPost>
           ))}
