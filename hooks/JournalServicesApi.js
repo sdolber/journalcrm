@@ -20,6 +20,7 @@ const useJournalServicesApi = () => {
   useEffect(() => {
       if (currentUser) {
         currentUser.getIdTokenResult().then(res => {
+            console.log(res.token);
             setUserToken(res.token);
         });
       }

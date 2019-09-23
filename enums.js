@@ -1,12 +1,12 @@
 export const ApiActions = Object.freeze({
-    POST_PARSETIME: "POST_PARSETIME",
+  POST_PARSEACTIVITY: "POST_PARSEACTIVITY",
   });
   
   export const getUrlForAction = (action) => {
     switch (action) {
-          case ApiActions.POST_PARSETIME:
-              return "parseTime";
-          default:
-              return "";
+            case ApiActions.POST_PARSEACTIVITY:
+                return "parseActivity";
+            default:
+                return "";
     }
   }

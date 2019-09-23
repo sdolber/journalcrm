@@ -22,12 +22,13 @@ const Index = () => {
 
   // handle api repsonse
   useEffect(() => {
+    console.log(responseData);
     if (responseData.isError) {
         return;
     }
 
     switch (responseData.action) {
-        case ApiActions.POST_PARSETIME:
+        case ApiActions.POST_PARSEACTIVITY:
             console.log(responseData.payload);
             break;
         default:
@@ -36,7 +37,14 @@ const Index = () => {
 }, [responseData]);
 
   const onSubmitPost = (content) => {
-    doApiAction(ApiActions.POST_PARSETIME, {'message': content})
+    const loadMetadata = async () => {
+
+      await doApiAction(ApiActions.POST_PARSEACTIVITY, {'message': content});
+
+    };
+
+    loadMetadata();
+
     setActivities([content, ...activities]);
   }
 
