@@ -51,7 +51,6 @@ const ActivityPost = ({activity}) => {
     }
 
     const getFollowUpDate = (activityFollowUp) => {
-        console.log(activityFollowUp)
         if (activityFollowUp) {
             return <Label color='blue' >
                         <Icon name='calendar check' /> Follow-up
@@ -63,6 +62,17 @@ const ActivityPost = ({activity}) => {
                     </Label>
         }
 
+        return <></>;
+    }
+
+    const getSentiment = (sentiment) => {
+        if (sentiment)
+        {
+            return (<Label color={sentiment === 'GOOD'? 'green' : 'red'}>
+                        {sentiment === 'GOOD'? 'positive' : 'negative'}
+                    </Label>);
+        }
+        
         return <></>;
     }
 
@@ -89,6 +99,7 @@ const ActivityPost = ({activity}) => {
                         </Label>
                     }
                     { getFollowUpDate(activity.followUpDate)}
+                    { getSentiment(activity.sentiment) }
                 </Container>
             </Segment>
         </div>

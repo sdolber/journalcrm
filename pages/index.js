@@ -34,9 +34,13 @@ const Index = () => {
 
   const updateActivity = (activity) => {
     let updatedActivities = activities.slice(0);
-    updatedActivities.push(activity);
+    updatedActivities.unshift(activity);
 
     setActivities(updatedActivities);
+  }
+
+  const onActivityDateChange = () => {
+      setActivities([]);
   }
 
   const onSubmitPost = (content) => {
@@ -47,7 +51,7 @@ const Index = () => {
 
   return (
     <> 
-      <TimeNavBar></TimeNavBar>
+      <TimeNavBar onDateChange={onActivityDateChange}></TimeNavBar>
       <SubmitPost onSubmitPost={onSubmitPost} isLoading={isLoading}></SubmitPost>
       <Divider horizontal><i className='leaf icon' /></Divider>
       <ActivityList activities={activities}></ActivityList>
