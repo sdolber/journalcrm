@@ -13,47 +13,44 @@ const Index = () => {
   const { responseData, isLoading, errorMsg, doApiAction } = useJournalServicesApi();
 
   useEffect(() => {
-    setActivities(['I had a meeting with John Stamos from Google last week in their headquarters.',
-    'A text container is used for the main container, which is useful for single column layouts.',
-    'A text container is used for the main container, which is useful for single column layouts.']);
-    
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // handle api repsonse
   useEffect(() => {
-    console.log(responseData);
+
     if (responseData.isError) {
         return;
     }
 
     switch (responseData.action) {
         case ApiActions.POST_PARSEACTIVITY:
-            console.log(responseData.payload);
+            updateActivity(responseData.payload);
             break;
         default:
     }
 // eslint-disable-next-line react-hooks/exhaustive-deps
-}, [responseData]);
+  }, [responseData]);
+
+  const updateActivity = (activity) => {
+    let updatedActivities = activities.slice(0);
+    updatedActivities.push(activity);
+
+    setActivities(updatedActivities);
+  }
 
   const onSubmitPost = (content) => {
-    const loadMetadata = async () => {
 
-      await doApiAction(ApiActions.POST_PARSEACTIVITY, {'message': content});
+    doApiAction(ApiActions.POST_PARSEACTIVITY, {'message': content});
 
-    };
-
-    loadMetadata();
-
-    setActivities([content, ...activities]);
   }
 
   return (
     <> 
       <TimeNavBar></TimeNavBar>
-      <SubmitPost onSubmitPost={onSubmitPost}></SubmitPost>
+      <SubmitPost onSubmitPost={onSubmitPost} isLoading={isLoading}></SubmitPost>
       <Divider horizontal><i className='leaf icon' /></Divider>
-      <ActivityList items={activities}></ActivityList>
+      <ActivityList activities={activities}></ActivityList>
     </>
 )}
 

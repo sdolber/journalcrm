@@ -6,27 +6,18 @@ import {
 import ActivityPost from './ActivityPost';
 import PropTypes from 'prop-types';
 
-const ActivityList = ({items}) => {
+const ActivityList = ({activities}) => {
+  console.log(activities);
   return (
     <div>
-      <Transition.Group
-          as={List}
-          duration={200}
-          divided
-          size='huge'
-          verticalAlign='middle'
-        >
-          {items.map((item) => (
-            <ActivityPost key={Math.random()}>
-                {item}
-            </ActivityPost>
+      {activities.map((activity) => (
+            <ActivityPost key={Math.random()} activity={activity} />
           ))}
-        </Transition.Group>
     </div>
 )}
 
 ActivityList.propTypes = {
-    items: PropTypes.array,
+    activities: PropTypes.array,
 };
 
 export default ActivityList;

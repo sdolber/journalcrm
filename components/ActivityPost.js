@@ -1,45 +1,94 @@
 import React, {useState, useContext} from 'react';
+import Moment from 'react-moment';
 import {
   Segment,
   Label,
   Icon,
   Button,
   Container
+  
 } from 'semantic-ui-react';
 import person from './images/person.png';
 import company from './images/company.png';
 import location from './images/location.png';
 
-const ActivityPost = ({children}) => {
+const ActivityPost = ({activity}) => {
+
+    const getActivityTypeLabel = (activityType) => {
+        if (activityType === 'MEETING') {
+            return (<Label as='a' color='blue' ribbon style={{marginBottom:'3.5em'}}>
+                        <Icon name='calendar' />
+                            Meeting
+                    </Label>);
+        }
+
+        if (activityType === 'PHONE') {
+            return (<Label as='a' color='teal' ribbon style={{marginBottom:'3.5em'}}>
+                        <Icon name='phone' />
+                            Call
+                    </Label>);
+        }
+
+        if (activityType === 'EMAIL') {
+            return (<Label as='a' color='red' ribbon style={{marginBottom:'3.5em'}}>
+                        <Icon name='mail' />
+                            Email
+                    </Label>);
+        }
+
+        return <></>;
+    }
+
+    const getPersonLabel = (activityPersons) => {
+        if (activityPersons) {
+            return <Label as='a' image>
+                    <img src={person} />
+                        {activity.persons[0]}
+                    </Label>
+        }
+
+        return <></>;
+    }
+
+    const getFollowUpDate = (activityFollowUp) => {
+        console.log(activityFollowUp)
+        if (activityFollowUp) {
+            return <Label color='blue' >
+                        <Icon name='calendar check' /> Follow-up
+                        <Label.Detail>
+                            <Moment format="MM/DD/YYYY">
+                                {activityFollowUp}
+                            </Moment>
+                        </Label.Detail>
+                    </Label>
+        }
+
+        return <></>;
+    }
+
     return (
         <div>
             <Segment style={{ marginTop: '2em' }}>
-                <Label as='a' color='blue' ribbon style={{marginBottom:'3.5em'}}>
-                    <Icon name='calendar' />
-                    Meeting
-                </Label>
-                <Button.Group basic size='small' floated='right'>
-                    <Button icon='file' />
-                    <Button icon='save' />
-                    <Button icon='upload' />
-                    <Button icon='download' />
-                </Button.Group>
+                <>
+                    {getActivityTypeLabel(activity.type)}
+                    <Button.Group basic size='small' floated='right'>
+                        <Button icon='edit' />
+                        <Button icon='save' />
+                    </Button.Group>
+                </>
                 <p className='post-content'>
-                    {children}
+                    {activity.content}
                 </p>
                 <Container style={{marginTop:'3em'}}>
-                    <Label as='a' image>
-                        <img src={person} />
-                        John Stamos
-                    </Label>
-                    <Label as='a' image>
-                        <img src={company} />
-                        Google
-                    </Label>
-                    <Label as='a'  image>
-                        <img src={location} />
-                        San Francisco, USA
-                    </Label>
+                    {getPersonLabel(activity.persons)}
+                    {
+                        activity.organization &&
+                        <Label as='a' image>
+                            <img src={company} />
+                            {activity.organization}
+                        </Label>
+                    }
+                    { getFollowUpDate(activity.followUpDate)}
                 </Container>
             </Segment>
         </div>

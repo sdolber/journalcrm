@@ -5,11 +5,12 @@ import {
   Form,
   TextArea,
   Button,
-  Icon
+  Icon,
+  Loader
 } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
-const SubmitPost = ({onSubmitPost}) => {
+const SubmitPost = ({onSubmitPost, isLoading}) => {
     const [postContent, setPostContent] = useState('');
 
     return (
@@ -19,7 +20,8 @@ const SubmitPost = ({onSubmitPost}) => {
         <Form className='floated'>
             <TextArea placeholder='Type a new entry' rows={5} value={postContent} onChange={(ev, textarea) => {setPostContent(textarea.value)}} />
             <Divider className="hidden" />
-            <Button secondary animated className="ui right floated" onClick={() => {onSubmitPost(postContent); setPostContent('');}}>
+            <Loader active={isLoading} inline />
+            <Button disabled={isLoading} secondary animated className="ui right floated" onClick={() => {onSubmitPost(postContent); setPostContent('');}}>
             <Button.Content visible>Post</Button.Content>
             <Button.Content hidden>
                 <Icon name='arrow right' />
