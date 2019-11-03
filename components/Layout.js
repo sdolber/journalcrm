@@ -27,8 +27,6 @@ const Layout = ({children}) => {
           <i className="address book outline icon"></i>
           Journal
         </Menu.Item>
-        <Menu.Item as='a'>Home</Menu.Item>
-
         <Dropdown item simple text='CRM'>
           <Dropdown.Menu>
             <Dropdown.Item>Contacts</Dropdown.Item>
@@ -88,7 +86,7 @@ const Layout = ({children}) => {
           <Grid.Column width={7}>
             <Header inverted as='h4' content='Journal' />
             <p>
-              A modern customer management tool for the future of your business.
+              A modern customer management tool.
             </p>
           </Grid.Column>
         </Grid>

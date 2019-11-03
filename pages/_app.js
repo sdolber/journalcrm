@@ -47,7 +47,9 @@ class JournalApp extends App {
           </>
           :
           <>
-            <button onClick={signInWithGoogle}>Sign in with google</button>
+            <Layout>
+              <button onClick={signInWithGoogle}>Sign in with google</button>
+            </Layout>
           </>
         }
       </>
