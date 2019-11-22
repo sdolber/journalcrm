@@ -5,7 +5,7 @@ export const ApiActions = Object.freeze({
   export const getUrlForAction = (action) => {
     switch (action) {
             case ApiActions.POST_PARSEACTIVITY:
-                return "parseActivity";
+                return "activities/parseActivity";
             default:
                 return "";
     }
