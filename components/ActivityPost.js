@@ -43,7 +43,7 @@ const ActivityPost = ({activity}) => {
         if (activityPersons) {
             return <Label as='a' image>
                     <img src={person} />
-                        {activity.persons[0]}
+                        {activityPersons[0].firstName}
                     </Label>
         }
 
@@ -90,7 +90,7 @@ const ActivityPost = ({activity}) => {
                     {activity.content}
                 </p>
                 <Container style={{marginTop:'3em'}}>
-                    {getPersonLabel(activity.persons)}
+                    {getPersonLabel(activity.contacts)}
                     {
                         activity.organization &&
                         <Label as='a' image>
