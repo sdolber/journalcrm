@@ -1,5 +1,5 @@
 const config = {
-    apiKey: "AIzaSyDmGfIrtjdxDLIjUqEZACGz8aOh24lPNLU",
+    apiKey: "** OLD KEY REMOVED **",
     authDomain: "journalcrm.firebaseapp.com",
     databaseURL: "https://journalcrm.firebaseio.com",
     projectId: "journalcrm",
