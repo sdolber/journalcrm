@@ -11,7 +11,3 @@ npm run dev
 yarn
 yarn dev
 ```
-
-```bash
-now
-```
